@@ -33,7 +33,29 @@ export default {
                   {
                       title: '地址',
                       key: 'address'
-                  }
+                  },
+                     {
+                        title: 'Action',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.remove(params.index)
+                                        }
+                                    }
+                                }, 'Delete')
+                            ]);
+                        }
+                    }
                 ],
         data1: [
         ]
@@ -45,6 +67,9 @@ export default {
          this.entryname.name = '';
          this.entryname.address = '';
          this.entryname.age = '';
+    },
+    remove (index) {
+        this.data1.splice(index, 1);
     }
   }
 }
